@@ -44,12 +44,13 @@ createNewLink oldPath = do
       -- Make the target dir
       liftIO $ makeDirectory $ takeDirectory newPath
 
-      -- Make the new hard link
-      liftIO $ createLink oldPath newPath
-
-      -- If user has specified, remove the original link
-      when (optMove opts) $
-         liftIO $ removeLink oldPath
+      if (optMove opts)
+        then
+        -- Move the file
+        liftIO $ rename oldPath newPath
+        else
+        -- Make the new hard link
+        liftIO $ createLink oldPath newPath
 
       return ()
 
@@ -101,7 +102,7 @@ executeCommands opts filePaths = do
       putStrLn "No-action mode, nothing will be changed."
 
    when (optMove opts) $
-      putStrLn "Removing original links after new links are in place."
+      putStrLn "Renaming original files."
 
    -- Do the link manipulations, and report any errors.
    forM_ actualPaths $ \path -> do
