@@ -43,8 +43,8 @@ topDir, oldPath, newLinkPathDate, newLinkPathSerial :: FilePath
 
 topDir = Util.resourcesPath </> "foo"
 oldPath = Util.resourcesPath </> "img_1220.jpg"
-newLinkPathDate = topDir </> "2003/2003-09-02/20030902-114303.jpg"
-newLinkPathSerial = topDir </> "2003/2003-09-02/20030902_220.jpg"
+newLinkPathDate = topDir </> "2003-09/20030902-114303.jpg"
+newLinkPathSerial = topDir </> "2003-09/20030902_220.jpg"
 
 
 testLinkDate :: Test
@@ -95,7 +95,7 @@ testLinkSerial = TestCase $ do
 
 testMove :: Test
 testMove = TestCase $ do
-   let newNewLinkPath = topDir </> "2003/2003-09-02/20030902_321.jpg"
+   let newNewLinkPath = topDir </> "2003-09/20030902_321.jpg"
 
    -- Make a dummy copy of the source file. This test will be getting rid
    -- of it, if successful.
@@ -193,7 +193,7 @@ testLinkSuffix = TestCase $ do
    waitForProcess procH
 
    let newLinkPath = topDir </>
-         ("2003/2003-09-02/20030902-114303" ++ suffix) <.> "jpg"
+         ("2003-09/20030902-114303" ++ suffix) <.> "jpg"
 
    -- Check that the correct output path exists
    existsNew <- fileExist newLinkPath

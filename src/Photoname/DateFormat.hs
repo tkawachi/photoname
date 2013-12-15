@@ -31,5 +31,4 @@ buildDatePath oldPath = do
    noDirs <- asks optNoDirs
    return $ if (noDirs)
       then parentDir </> fileName
-      else parentDir </> (formatYear date) </>
-         (formatDateHyphens date) </> fileName
+      else parentDir </> (formatYearMonth date) </> fileName

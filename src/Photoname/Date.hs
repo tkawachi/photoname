@@ -5,7 +5,7 @@
 {-# OPTIONS_GHC -fno-warn-unused-do-bind #-}
 
 module Photoname.Date
-   ( formatYear, formatDateHyphens, formatDate, formatDateTime
+   ( formatYear, formatYearMonth, formatDateHyphens, formatDate, formatDateTime
    , readDate
    )
    where
@@ -49,6 +49,12 @@ formatYear :: Maybe LocalTime -> String
 formatYear Nothing  = "0000"
 formatYear (Just x) = formatTime defaultTimeLocale "%Y" x
 
+{- Format a Maybe CalendarTime into a "yyyy-mm" string. Dates that are
+   Nothing in value format to "0000-00"
+-}
+formatYearMonth :: Maybe LocalTime -> String
+formatYearMonth Nothing = "0000-00"
+formatYearMonth (Just x) = formatTime defaultTimeLocale "%Y-%m" x
 
 {- Format a Maybe CalendarTime into a "yyyy-mm-dd" string. Dates that are
    Nothing in value format to "0000-00-00"
