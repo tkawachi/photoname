@@ -245,4 +245,4 @@ testDirForFile = TestCase $ do
 
    -- Test output to stdout
    assertBool "dir as file to change: correct output"
-      (output =~ "" :: Bool)
+      (output == "" :: Bool)
